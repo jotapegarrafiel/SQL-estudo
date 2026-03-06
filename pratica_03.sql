@@ -35,3 +35,30 @@ WHERE e.variacao_percentual = (
     WHERE e2.regiao = e.regiao
 )
 ORDER BY e.regiao;
+
+-- 8 = Mostre a maior população de 2025 de cada região.
+SELECT e.regiao, MAX(populacao_2025) AS pop_max_2025
+FROM estados_brasil e
+GROUP BY e.regiao;
+
+-- 8.1 = Mostre qual estado de cada região tem a maior população.
+SELECT e.unidade_federativa, e.regiao, e.populacao_2025
+FROM estados_brasil e
+WHERE e.populacao_2025 = (
+    SELECT MAX(e2.populacao_2025)
+    FROM estados_brasil e2
+    WHERE e.regiao = e2.regiao
+)
+ORDER BY e.regiao;
+
+-- 9 = Mostre a quantidade de estados por região, ordenando da maior quantidade para a menor.
+SELECT e.regiao, count(e.unidade_federativa) AS qtde_estados
+FROM estados_brasil e
+GROUP BY e.regiao
+ORDER BY qtde_estados DESC;
+
+-- 10 = Mostre a média da variação percentual por região, ordenando da maior para a menor.
+SELECT e.regiao, ROUND(AVG(variacao_percentual), 2) AS media_var_perc
+FROM estados_brasil e
+GROUP BY e.regiao
+ORDER BY media_var_perc DESC;
