@@ -76,7 +76,8 @@ Algumas das perguntas respondidas ao longo do projeto foram:
 ```text
 projeto-sql-estados-brasil/
 ├── README.md
-└── consultas.
+└── consultas.sql
+```
 
 ---
 
